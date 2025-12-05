@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home Page</title>
+        <style>
+
+            html, body {
+                padding: 0;
+                margin: 0;
+                background-color: aquamarine;
+            }
+
+            body, button {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            #maincontainer {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                width: 100vw;
+                height: 100vh;
+            }
+
+            #innerContainer > * {
+                margin: 10px;
+            }
+
+            #innerContainer {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding:20px;
+                background-color: white;
+                border-radius: 20px;
+                max-width: 40%;
+                overflow-x: scroll;
+                
+            }
+
+            @media screen and (max-width: 900px) {
+                #innerContainer {
+                    max-width: 70%;
+                }
+            }
+
+            #bird {
+                animation: rotatebird 2s infinite;
+            }
+
+            @keyframes shakebird {
+                0%{
+                    transform: translate(-10px, 0px);
+                }
+                50%{
+                    transform: translate(10px, 0px);
+                }
+                100%{
+                    transform: translate(-10px, 0px);
+                }
+            }
+
+            @keyframes rotatebird {
+                0%{
+                    transform: rotate(0deg);
+                }
+                100%{
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div style="height:40px;width:40px;border-radius:20px;background-color:black;position:absolute;top:10px;right:10px;cursor:pointer;" id="darkModeToggler">
+        </div>
+        <div id="maincontainer">
+            <div id="innerContainer">
+                <img id="bird" src="{% static 'test.avif' %}" alt="User Image" style="width:100px;"/>
+                <label for="name">Enter your name:</label>
+                <span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+                <input type="text" id="name" name="name" required>
+                <button type="submit">Submit</button>
+                
+            </div>
+        </div>
+        <script>
+            document.querySelector('button').addEventListener('click', function() {
+                const name = document.getElementById('name').value;
+                if(name) {
+                    window.location.href = `/home2/${name}/`;
+                } else {
+                    alert('Please enter your name.');
+                }
+            });
+
+            lightMode = true;
+
+            document.querySelector('#darkModeToggler').addEventListener('click', function() {
+                if(lightMode){
+                    document.querySelector('#innerContainer').style.backgroundColor = 'black';
+                    document.querySelector('#innerContainer').style.color = 'white';
+                    document.querySelector('#darkModeToggler').style.backgroundColor = 'white';
+                    lightMode = false;
+                } else {
+                    document.querySelector('#innerContainer').style.backgroundColor = 'white';
+                    document.querySelector('#innerContainer').style.color = 'black';
+                    document.querySelector('#darkModeToggler').style.backgroundColor = 'black';
+                    lightMode = true;
+                }
+            });
+
+        </script>
+    </body>
+</html>

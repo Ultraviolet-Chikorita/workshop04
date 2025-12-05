@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>Legal People</title>
+    </head>
+    <body>
+        {% for person in people %}
+            <p>{{ person }}</p>
+        {% empty %}
+            <p>No legal people found.</p>
+        {% endfor %}
+    </body>
+</html>

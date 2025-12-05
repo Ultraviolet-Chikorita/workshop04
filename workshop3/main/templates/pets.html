@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Pets of Person</title>
+    </head>
+    <body>
+        <h1>List of Pets</h1>
+        <ul>
+            {% for pet in pets %}
+                <li>{{ pet.name }} - {{ pet.age }} years old</li>
+            {% empty %}
+                <li>No pets found.</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
